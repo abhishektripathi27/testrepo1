@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.model.Users;
 import com.example.repos.UsersRepository;
-import com.example.service.Greeting;
 
+import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.core.util.StatusPrinter;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -45,6 +45,8 @@ public class UserController {
 	@RequestMapping("/adduser")
 	@ResponseBody
 	public String test(@RequestParam Map<String, String> requestParams) {
+		LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
+		StatusPrinter.print(lc);
 		logger.debug("Starting...........................................");
 		String firstName = requestParams.get("firstName");
 		String lastName = requestParams.get("lastName");
